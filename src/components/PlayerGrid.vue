@@ -1,42 +1,33 @@
 <script>
 import Player from './Player.vue';
 export default {
-    props: ['numPlayers'],
+    props: ['quantPlayers'],
     data() {
         return {
-            GridClass: `PlayerCount${this.numPlayers}`,
-            rotationMultiplier: this.rotateSetter(this.numPlayers)
+            GridClass: `PlayerCount${this.quantPlayers}`
+        }
+    },
+    mounted(){
+        let gridEl = document.querySelector('.PlayerGrid')
+        let gridParentEl = gridEl.parentElement
+        let width = gridParentEl.offsetWidth
+        let height = gridParentEl.offsetHeight
+        console.log(width, height)
+        if (height > width) {
+            gridEl.style.width = height + "px"
+            gridEl.style.height = width + "px"
+            // gridEl.style.transform = "rotate(90deg)"
         }
     },
     components: { Player },
-    methods: {
-        rotateSetter(num) {
-            if (num == 1) {
-                return [0]
-            }
-            if (num == 2) {
-                return [1, -1]
-            }
-            if (num == 3) {
-                return [2, 0, -1]
-            }
-            if (num == 4) {
-                return [2, 0, 2, 0]
-            }
-            if (num == 5) {
-                return [2, 0, 2, 0, -1]
-            }
-            return [2, 0, 2, 0, 2, 0]
-        }
-    }
 }
 </script>
 
 <template>
-    <div class="PlayerGrid" v-bind:class="GridClass">
-        <Player v-for="index in Number(numPlayers)" v-bind:player-number="index"
-            v-bind:rotation-multiplier="rotationMultiplier[index - 1]" />
-    </div>
+        <div class="PlayerGrid" v-bind:class="GridClass">
+            <Player v-for="index in Number(quantPlayers)" v-bind:player-number="index"
+            v-bind:quant-players="quantPlayers" />
+        </div>
 </template>
 
 <style scoped>
@@ -78,5 +69,10 @@ export default {
     grid-template-areas:
         "player1 player3 player5"
         "player2 player4 player6";
+}
+@media screen and (max-aspect-ratio: 1) {
+    .PlayerGrid {
+        rotate: 90deg;
+    }
 }
 </style>

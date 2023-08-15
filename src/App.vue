@@ -5,21 +5,13 @@ import PlayerGrid from './components/PlayerGrid.vue';
 
 <template>
   <div id="base">
-    <PlayerGrid num-players="5" />
+    <PlayerGrid quant-players="5" />
   </div>
 </template>
 
 <style scoped>
-  #base {
-    width: 100vw;
-    height: 100dvh;
-  }
-  @media only screen and (max-aspect-ratio: 1){
-  #base {
-    width: 100dvh;
-    height: 100vw;
-    rotate: 90deg;
-  }
-  
+#base {
+  width: 100vw;
+  height: 100dvh;
 }
 </style>

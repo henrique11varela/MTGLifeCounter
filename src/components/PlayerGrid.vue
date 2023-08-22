@@ -19,6 +19,7 @@ export default {
             let deg = 0
             if (!(i % 2)) {
                 deg = 180
+                this.$refs.players[i].style.left = "1px"
                 if (i == this.quantPlayers - 1) {
                     deg = -90
                     this.$refs.players[i].style.top = (this.$refs.players[i].offsetHeight - this.$refs.players[i].offsetWidth) / 2 + "px"

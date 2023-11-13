@@ -1,17 +1,22 @@
 <script setup>
-import PlayerGrid from './components/PlayerGrid.vue';
-
+import { RouterView } from "vue-router";
+import Master from "./layouts/Master.vue";
+import Header from "./components/Master/Header.vue";
+import Footer from "./components/Master/Footer.vue";
 </script>
 
 <template>
-  <div id="base">
-    <PlayerGrid quant-players="5" />
-  </div>
+    <Master>
+        <template v-slot:header>
+            <Header></Header>
+        </template>
+
+        <RouterView></RouterView>
+
+        <template v-slot:footer>
+            <Footer></Footer>
+        </template>
+    </Master>
 </template>
 
-<style scoped>
-#base {
-  width: 100vw;
-  height: 100dvh;
-}
-</style>
+<style scoped></style>

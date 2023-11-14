@@ -25,7 +25,7 @@
                 class="p-2 shadow menu dropdown-content z-[1] bg-base-200 rounded-box w-max"
             >
                 <li><RouterLink :to="{ name: 'Home' }">Home</RouterLink></li>
-                <li><RouterLink :to="{ name: 'PlayerGrid' }">Other</RouterLink></li>
+                <li><RouterLink :to="{ name: 'Game' }">Game</RouterLink></li>
             </ul>
         </details>
     </div>

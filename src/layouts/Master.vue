@@ -3,7 +3,7 @@
         <div class="flex-none">
             <slot name="header"></slot>
         </div>
-        <div class="flex-1 relative">
+        <div class="flex-1 relative flex">
             <slot></slot>
         </div>
         <div class="flex-none">

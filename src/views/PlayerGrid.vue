@@ -1,10 +1,10 @@
 <template>
     <div
-        :class="`PlayerCount${quantPlayers}`"
+        :class="`PlayerCount${getQuantPlayers}`"
         class="PlayerGrid grid w-full flex-col items-center absolute"
     >
         <div
-            v-for="index in quantPlayers"
+            v-for="index in getQuantPlayers"
             :key="index"
             :id="`Player${index}`"
             class="Player w-full h-full"
@@ -19,12 +19,11 @@
 <script>
 import Player from "../components/PlayerLife.vue";
 import useWebsiteStore from '../store/Website.js'
-import { mapActions } from 'pinia'
+import useGameStore from '../store/Game.js'
+import { mapActions, mapState } from 'pinia'
 export default {
-    data() {
-        return {
-            quantPlayers: 5,
-        };
+    computed: {
+        ...mapState(useGameStore, ['getQuantPlayers']),
     },
     methods: {
         ...mapActions(useWebsiteStore, ['setFullscreen']),
@@ -46,7 +45,7 @@ export default {
             [90, -90, 90, -90, 90, -90],
         ];
         
-        feedTape[this.quantPlayers - 1].forEach((angle, index) => {
+        feedTape[this.getQuantPlayers - 1].forEach((angle, index) => {
             let player = this.$refs.players[index];
             player.style.transform += ` rotate(${angle}deg)`;
             
@@ -58,7 +57,7 @@ export default {
                 player.style.width = `${heightSpace}px`;
             }
             
-            if (index != this.quantPlayers - 1) {
+            if (index != this.getQuantPlayers - 1 || !(this.getQuantPlayers % 2) || this.getQuantPlayers == 1) {
                 player.style.top =
                 (player.offsetWidth - player.offsetHeight) / 2 + "px";
                 player.style.left =

@@ -3,7 +3,7 @@ import Home from '../views/Home.vue'
 
 const routes = [
     { path: '/', name: 'Home', component: Home },
-    { path: '/otherpage', name: 'Other', component: () => import('../views/OtherPage.vue') },
+    { path: '/game', name: 'PlayerGrid', component: () => import('../views/PlayerGrid.vue') },
 ]
 
 const router = createRouter({

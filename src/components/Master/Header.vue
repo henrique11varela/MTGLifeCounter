@@ -1,43 +1,44 @@
 <template>
-    <div class="navbar bg-base-100 border-b border-zinc-700" :class="{hidden: fullscreen}">
-        <div class="flex-1">
-            <RouterLink :to="{ name: 'Home' }" class="btn btn-ghost text-xl"
+    <div
+        class="flex justify-between items-center rounded-md m-2 p-2 bg-dark-emphasis text-dark dark:bg-dark dark:text-dark-emphasis"
+        :class="{ hidden: fullscreen }"
+    >
+        <div>
+            <RouterLink
+                :to="{ name: 'Home' }"
+                class="text-xl py-1 px-2 rounded-md"
                 >MTG Life Counter</RouterLink
             >
         </div>
-        <details class="dropdown dropdown-end flex-none">
-            <summary class="m-1 btn btn-square btn-ghost flex">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    class="inline-block w-5 h-5 stroke-current"
+        <div class="relative">
+            <button class="py-1 px-2 rounded-md"
+            @click="toggleHidden(this.$refs.dropdown)">
+                <img class="w-5 h-8" src="../../assets/mana/Infect.svg" />
+            </button>
+            <div class="relative h-0 w-full">
+                <div
+                    class="flex flex-col gap-2 z-50 absolute right-0 top-3 p-2 rounded-md hidden bg-dark-emphasis"
+                    ref="dropdown"
                 >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M4 6h16M4 12h16M4 18h16"
-                    ></path>
-                </svg>
-            </summary>
-            <ul
-                class="p-2 shadow menu dropdown-content z-[1] bg-base-200 rounded-box w-max"
-            >
-                <li><RouterLink :to="{ name: 'Home' }">Home</RouterLink></li>
-                <li><RouterLink :to="{ name: 'Game' }">Game</RouterLink></li>
-            </ul>
-        </details>
+                    <RouterLink :to="{ name: 'Home' }" class="p-2">Home</RouterLink>
+                    <RouterLink :to="{ name: 'Game' }" class="p-2">Game</RouterLink>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
+import { toggleHidden } from '../../services/ui.js'
 import { RouterLink } from "vue-router";
 import useWebsiteStore from "../../store/Website.js";
-import { mapState } from 'pinia'
+import { mapState } from "pinia";
 export default {
     computed: {
-        ...mapState(useWebsiteStore, ['fullscreen'])
+        ...mapState(useWebsiteStore, ["fullscreen"]),
+    },
+    methods: {
+        toggleHidden
     }
 };
 </script>

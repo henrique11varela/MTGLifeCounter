@@ -7,10 +7,11 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "pages": "rename dist docs",
-    "android": "vite build && npx cap add android && npx cap sync"
+    "pages": "rm -r ./dist && rm -r ./docs && npm run build && mv ./dist ./docs",
+    "android": "(rm -r ./dist || true) && (rm -r ./android || true) && npm run build && npx cap add android && npx cap sync"
   },
   "dependencies": {
+    "@capacitor/android": "^5.5.1",
     "@capacitor/core": "^5.5.1",
     "pinia": "^2.1.7",
     "vue": "^3.3.4",

@@ -1,0 +1,19 @@
+// See https://containers.dev/implementors/json_reference/ for configuration reference
+{
+    "name": "Untitled Node.js project",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"Vue.volar",
+				"sdras.vue-vscode-snippets",
+				"esbenp.prettier-vscode",
+				"Ionic.ionic",
+				"dbaeumer.vscode-eslint"
+			]
+		}
+	},
+    "remoteUser": "node"
+}

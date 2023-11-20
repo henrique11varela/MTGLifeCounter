@@ -7,14 +7,17 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "pages": "rename dist docs"
+    "pages": "rename dist docs",
+    "android": "vite build && npx cap add android && npx cap sync"
   },
   "dependencies": {
+    "@capacitor/core": "^5.5.1",
     "pinia": "^2.1.7",
     "vue": "^3.3.4",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
+    "@capacitor/cli": "^5.5.1",
     "@vitejs/plugin-vue": "^4.2.3",
     "autoprefixer": "^10.4.16",
     "postcss": "^8.4.31",

@@ -57,7 +57,7 @@ export default {
                 player.style.width = `${heightSpace}px`;
             }
             
-            if (index != this.getQuantPlayers - 1 || !(this.getQuantPlayers % 2) || this.getQuantPlayers == 1) {
+            if ((index != this.getQuantPlayers - 1 || !(this.getQuantPlayers % 2) || this.getQuantPlayers == 1) && this.getQuantPlayers != 2) {
                 player.style.top =
                 (player.offsetWidth - player.offsetHeight) / 2 + "px";
                 player.style.left =

@@ -2,16 +2,12 @@
     <div class="w-full flex flex-col justify-evenly items-center">
         <select
             v-model="selectedQuantPlayers"
-            class="select border-primary focus:border-primary max-w-xs"
+            class="select text-center w-3/4 rounded-md p-2 bg-dark-emphasis text-dark dark:bg-secondary dark:text-dark-emphasis focus:border focus:border-primary"
         >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
+            <option v-for="index in 6" :key="index" :value="index">{{ index }}</option>
+            
         </select>
-        <RouterLink :to="{ name: 'Game' }" class="btn">Start</RouterLink>
+        <RouterLink :to="{ name: 'Game' }" class="btn text-center w-3/4 rounded-md p-2 bg-dark-emphasis text-dark dark:bg-secondary dark:text-dark-emphasis focus:border focus:border-primary">Start</RouterLink>
     </div>
 </template>
 

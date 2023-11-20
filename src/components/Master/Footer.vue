@@ -1,6 +1,6 @@
 <template>
     <div
-        class="w-full flex justify-center items-center p-4 border-t border-slate-700"
+        class="w-full flex justify-center items-center p-4 border-t border-slate-700 dark:text-light"
         :class="{ hidden: fullscreen }"
     >
         <p>

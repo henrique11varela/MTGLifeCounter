@@ -13,12 +13,11 @@ function applyDarkMode() {
 }
 
 function toggleDarkMode() {
-    console.log('peepoo');
     if (localStorage.getItem("theme") != "dark") {
-        applyDarkMode();
         localStorage.setItem("theme", "dark");
-    } else {
         applyDarkMode();
+    } else {
         localStorage.setItem("theme", "");
+        applyDarkMode();
     }
 }

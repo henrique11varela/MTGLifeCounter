@@ -1,38 +1,42 @@
 <template>
-    <div
-        :class="`PlayerCount${getQuantPlayers}`"
-        class="PlayerGrid grid w-full flex-col items-center absolute"
-    >
-        <div
-            v-for="index in getQuantPlayers"
-            :key="index"
-            :id="`Player${index}`"
-            class="Player w-full h-full"
-        >
+    <div :class="`PlayerCount${getQuantPlayers}`"
+        class="PlayerGrid grid w-full flex-col items-center absolute overflow-hidden">
+        <div v-for="index in getQuantPlayers" :key="index" :id="`Player${index}`" class="Player w-full h-full">
             <div :ref="`players`" class="w-full h-full">
                 <Player :player-id="index" />
             </div>
         </div>
+        <RouterLink :to="{ name: 'Home' }"
+            class="absolute top-1/2 start-1/2 -translate-x-1/2 -translate-y-1/2 bg-dark text-light p-1 rounded-full aspect-square">
+            <img :src="menuSvg" class="h-6" /></RouterLink>
     </div>
 </template>
 
 <script>
+import menuSvg from "../assets/menu.svg";
 import Player from "../components/PlayerLife.vue";
-import useWebsiteStore from '../store/Website.js'
-import useGameStore from '../store/Game.js'
-import { mapActions, mapState } from 'pinia'
+import useWebsiteStore from "../store/Website.js";
+import useGameStore from "../store/Game.js";
+import { mapActions, mapState } from "pinia";
+import { RouterLink } from "vue-router";
 export default {
+    data() {
+        return {
+            menuSvg,
+        };
+    },
     computed: {
-        ...mapState(useGameStore, ['getQuantPlayers']),
+        ...mapState(useGameStore, ["getQuantPlayers"]),
     },
     methods: {
-        ...mapActions(useWebsiteStore, ['setFullscreen']),
+        ...mapActions(useWebsiteStore, ["setFullscreen"]),
     },
     components: {
         Player,
+        RouterLink,
     },
-    created(){
-        this.setFullscreen(true)
+    created() {
+        this.setFullscreen(true);
     },
     mounted() {
         //player rotate
@@ -44,11 +48,11 @@ export default {
             [90, -90, 90, -90, 0],
             [90, -90, 90, -90, 90, -90],
         ];
-        
+
         feedTape[this.getQuantPlayers - 1].forEach((angle, index) => {
             let player = this.$refs.players[index];
             player.style.transform += ` rotate(${angle}deg)`;
-            
+
             if (angle == 90 || angle == -90) {
                 let parent = player.parentElement;
                 let heightSpace = parent.offsetHeight;
@@ -56,17 +60,22 @@ export default {
                 player.style.height = `${widthSpace}px`;
                 player.style.width = `${heightSpace}px`;
             }
-            
-            if ((index != this.getQuantPlayers - 1 || !(this.getQuantPlayers % 2) || this.getQuantPlayers == 1) && this.getQuantPlayers != 2) {
+
+            if (
+                (index != this.getQuantPlayers - 1 ||
+                    !(this.getQuantPlayers % 2) ||
+                    this.getQuantPlayers == 1) &&
+                this.getQuantPlayers != 2
+            ) {
                 player.style.top =
-                (player.offsetWidth - player.offsetHeight) / 2 + "px";
+                    (player.offsetWidth - player.offsetHeight) / 2 + "px";
                 player.style.left =
-                (player.offsetHeight - player.offsetWidth) / 2 + "px";
+                    (player.offsetHeight - player.offsetWidth) / 2 + "px";
             }
         });
     },
-    beforeUnmount(){
-        this.setFullscreen(false)
+    beforeUnmount() {
+        this.setFullscreen(false);
     },
 };
 </script>
@@ -117,7 +126,7 @@ export default {
     position: relative;
 }
 
-.Player > div {
+.Player>div {
     position: absolute;
 }
 
